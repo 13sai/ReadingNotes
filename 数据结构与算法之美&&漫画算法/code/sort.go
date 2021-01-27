@@ -80,3 +80,112 @@ func SelectSort(arr []int) []int {
 
 	return arr
 }
+
+/**
+ * 归并排序
+ */
+func MergeSort(arr []int) []int {
+	l := len(arr)
+	if l < 2 {
+		return arr
+	}
+	num := l / 2
+	left := MergeSort(arr[:num])
+	right := MergeSort(arr[num:])
+	return merge(left, right)
+}
+
+// 有点双指针的意思
+func merge(left, right []int) (result []int) {
+	l, r := 0, 0
+	for l < len(left) && r < len(right) {
+		if left[l] < right[r] {
+			result = append(result, left[l])
+			l++
+		} else {
+			result = append(result, right[r])
+			r++
+		}
+	}
+	if l < len(left) {
+		result = append(result, left[l:]...)
+	}
+
+	if r < len(right) {
+		result = append(result, right[r:]...)
+	}
+	fmt.Println(result)
+	return
+}
+
+/**
+ * 快速排序
+ */
+func QuickSort(arr []int) []int {
+	return separateSort(arr, 0, len(arr)-1)
+}
+
+func separateSort(arr []int, start, end int) []int {
+	if start >= end {
+		return arr
+	}
+
+	i := partition(arr, start, end)
+	arr = separateSort(arr, start, i-1)
+	arr = separateSort(arr, i+1, end)
+	return arr
+}
+
+// 分成左右两部分，进行比较，大的在右边，小的在左边，并最终返回分隔位置i
+func partition(arr []int, start, end int) int {
+	// 选取最后一位为分隔基准值
+	pivot := arr[end]
+
+	i := start
+	for j := start; j < end; j++ {
+		if arr[j] < pivot {
+			if i != j {
+				arr[j], arr[i] = arr[i], arr[j]
+			}
+			i++
+		}
+	}
+
+	// 基准和i交换位置
+	arr[i], arr[end] = arr[end], arr[i]
+	fmt.Println(arr)
+	return i
+}
+
+func BucketSort(arr []int) []int {
+	l := len(arr)
+	if l < 2 {
+		return arr
+	}
+
+	max := arr[0]
+	for i := 1; i < l; i++ {
+		if max < arr[i] {
+			max = arr[i]
+		}
+	}
+
+	buckets := make([][]int, l)
+	index := 0
+	for i := 0; i < l; i++ {
+		index = arr[i] * (l - i) / max
+		buckets[index] = append(buckets[index], arr[i])
+	}
+
+	pos := 0
+	for i := 0; i < l; i++ {
+		bucketLen := len(buckets[i])
+		if bucketLen > 0 {
+			buckets[i] = QuickSort(buckets[i])
+			copy(arr[pos:], buckets[i])
+			pos += bucketLen
+		}
+	}
+
+	return arr
+}

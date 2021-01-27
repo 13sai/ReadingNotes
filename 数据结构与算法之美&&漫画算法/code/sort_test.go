@@ -8,7 +8,7 @@ import (
 func TestBubbleSort(t *testing.T) {
 	fmt.Println()
 	fmt.Println("TestBubbleSort------")
-	a := []int{9, 11, 4, 15, 28, 10, 2}
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
 	fmt.Println("init", a)
 	fmt.Println(BubbleSort(a))
 	fmt.Println()
@@ -17,7 +17,7 @@ func TestBubbleSort(t *testing.T) {
 func TestInsertSort(t *testing.T) {
 	fmt.Println()
 	fmt.Println("InsertSort------")
-	a := []int{9, 11, 4, 15, 28, 10, 2}
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
 	fmt.Println("init", a)
 	fmt.Println(InsertSort(a))
 }
@@ -25,7 +25,31 @@ func TestInsertSort(t *testing.T) {
 func TestSelectSort(t *testing.T) {
 	fmt.Println()
 	fmt.Println("SelectSort------")
-	a := []int{9, 11, 4, 15, 28, 10, 2}
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
 	fmt.Println("init", a)
 	fmt.Println(SelectSort(a))
+}
+
+func TestMergeSort(t *testing.T) {
+	fmt.Println()
+	fmt.Println("MergeSort------")
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
+	fmt.Println("init", a)
+	fmt.Println(MergeSort(a))
+}
+
+func TestQuickSort(t *testing.T) {
+	fmt.Println()
+	fmt.Println("QuickSort------")
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
+	fmt.Println("init", a)
+	fmt.Println(QuickSort(a))
+}
+
+func TestBucketSort(t *testing.T) {
+	fmt.Println()
+	fmt.Println("BucketSort------")
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
+	fmt.Println("init", a)
+	fmt.Println(BucketSort(a))
 }
