@@ -189,3 +189,57 @@ func BucketSort(arr []int) []int {
 
 	return arr
 }
+
+// 构建一个堆
+
+//build a heap
+func buildHeap(a []int, n int) {
+
+	//heapify from the last parent node
+	for i := n / 2; i >= 1; i-- {
+		heapifyUpToDown(a, i, n)
+	}
+
+}
+
+// 堆排序,从第二个开始排序
+func HeapSort(a []int) []int {
+	var n int
+	n = len(a) - 1
+	buildHeap(a, n)
+	k := n
+	for k >= 1 {
+		swap(a, 1, k)
+		heapifyUpToDown(a, 1, k-1)
+		k--
+	}
+	return a
+}
+
+func heapifyUpToDown(a []int, top int, count int) {
+	for i := top; i <= count/2; {
+		maxIndex := i
+		if a[i] < a[i*2] {
+			maxIndex = i * 2
+		}
+
+		if i*2+1 <= count && a[maxIndex] < a[i*2+1] {
+			maxIndex = i*2 + 1
+		}
+
+		if maxIndex == i {
+			break
+		}
+
+		swap(a, i, maxIndex)
+		i = maxIndex
+	}
+
+}
+
+//swap two elements
+func swap(a []int, i int, j int) {
+	tmp := a[i]
+	a[i] = a[j]
+	a[j] = tmp
+}
