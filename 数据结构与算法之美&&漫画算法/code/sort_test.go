@@ -53,3 +53,11 @@ func TestBucketSort(t *testing.T) {
 	fmt.Println("init", a)
 	fmt.Println(BucketSort(a))
 }
+
+func TestHeapSort(t *testing.T) {
+	fmt.Println()
+	fmt.Println("HeapSort------")
+	a := []int{9, 11, 98, 13, 41, 15, 28, 10, 2, 32, 45, 27, 20}
+	fmt.Println("init", a)
+	fmt.Println(HeapSort(a))
+}
