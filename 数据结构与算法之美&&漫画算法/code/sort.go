@@ -197,26 +197,25 @@ func buildHeap(a []int, n int) {
 
 	//heapify from the last parent node
 	for i := n / 2; i >= 1; i-- {
-		heapifyUpToDown(a, i, n)
+		minHeap(a, i, n)
 	}
 
 }
 
 // 堆排序,从第二个开始排序
 func HeapSort(a []int) []int {
-	var n int
-	n = len(a) - 1
-	buildHeap(a, n)
-	k := n
-	for k >= 1 {
-		swap(a, 1, k)
-		heapifyUpToDown(a, 1, k-1)
-		k--
+	var count int
+	count = len(a) - 1
+	buildHeap(a, count)
+	for count >= 0 {
+		swap(a, 1, count)
+		minHeap(a, 1, count-1)
+		count--
 	}
 	return a
 }
 
-func heapifyUpToDown(a []int, top int, count int) {
+func minHeap(a []int, top int, count int) {
 	for i := top; i <= count/2; {
 		maxIndex := i
 		if a[i] < a[i*2] {
@@ -234,7 +233,7 @@ func heapifyUpToDown(a []int, top int, count int) {
 		swap(a, i, maxIndex)
 		i = maxIndex
 	}
-
+	fmt.Println(a)
 }
 
 //swap two elements
